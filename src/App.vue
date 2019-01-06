@@ -35,6 +35,10 @@ export default {
         title: '',
         note: '',
       };
+      localStorage.setItem('notes',JSON.stringify(this.notes));
+    },
+    mounted(){
+      localStorage.setItem('notes',JSON.stringify(this.notes));
     },
     removeNote(index) {
       this.notes.splice(index, 1);
