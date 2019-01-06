@@ -31,14 +31,11 @@ export default {
   methods: {
     addNote() {
       this.notes.push(this.note);
-      localStorage.setItem('notes',JSON.stringify(this.notes));
+      localStorage.setItem('notes', JSON.stringify(this.notes));
       this.note = {
         title: '',
         note: '',
       };
-    },
-    mounted(){
-      this.notes = JSON.parse(window.localStorage.getItem('notes')) || [];
     },
     removeNote(index) {
       this.notes.splice(index, 1);
@@ -46,6 +43,9 @@ export default {
     changeNoteValue(newNote) {
       this.note = newNote;
     },
+  },
+  mounted() {
+    this.notes = JSON.parse(window.localStorage.getItem('notes')) || [];
   },
 };
 </script>
