@@ -31,14 +31,14 @@ export default {
   methods: {
     addNote() {
       this.notes.push(this.note);
+      localStorage.setItem('notes',JSON.stringify(this.notes));
       this.note = {
         title: '',
         note: '',
       };
-      localStorage.setItem('notes',JSON.stringify(this.notes));
     },
     mounted(){
-      localStorage.setItem('notes',JSON.stringify(this.notes));
+      this.notes = JSON.parse(window.localStorage.getItem('notes')) || [];
     },
     removeNote(index) {
       this.notes.splice(index, 1);
