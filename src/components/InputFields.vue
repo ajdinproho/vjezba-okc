@@ -27,7 +27,12 @@ export default {
     },
     parentChangeMethod: {
       type: Function,
-      reguired: true,
+      required: true,
+    },
+    noteForUpdate: {
+      type: Object,
+      required: false,
+      default: () => {},
     },
   },
   methods: {
@@ -40,7 +45,20 @@ export default {
       this.parentChangeMethod({
         title: this.noteTitle,
         note: this.noteVal,
+        date: this.getDate(),
       });
+    },
+    getDate() {
+      const date = new Date();
+      return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}.${date.getHours()}.${date.getMinutes()}`;
+    },
+  },
+  watch: {
+    noteForUpdate(oldValues, newValues) {
+      if (newValues !== {}) {
+        this.noteVal = newValues.note;
+        this.noteTitle = newValues.title;
+      }
     },
   },
 };

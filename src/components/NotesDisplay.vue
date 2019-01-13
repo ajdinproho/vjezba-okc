@@ -1,10 +1,11 @@
 <template>
   <div>
     <NoteCard
-      v-for="(singelNote, index) in notesToBeDisplayed"
+      v-for="(singleNote, index) in notesToBeDisplayed"
       :key="index"
       :single-note="singleNote"
-      :parent-remove-method="parentRemoveMethod">
+      :parent-remove-method="parentRemoveMethod"
+      :update-note="updateNote">
     </NoteCard>
   </div>
 </template>
@@ -20,6 +21,10 @@ export default {
       default: () => [],
     },
     parentRemoveMethod: {
+      type: Function,
+      required: true,
+    },
+    updateNote: {
       type: Function,
       required: true,
     },

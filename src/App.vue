@@ -2,10 +2,12 @@
   <div id="app">
     <InputFields
       :add-note="addNote"
-      :parent-change-method="changeNoteValue" />
+      :parent-change-method="changeNoteValue"
+      :note-for-update="noteForUpdate" />
     <NotesDisplay
       :notes-to-be-displayed="notes"
-      :parent-remove-method="removeNote" />
+      :parent-remove-method="removeNote"
+      :update-note="updateNote" />
   </div>
 </template>
 
@@ -22,6 +24,7 @@ export default {
         note: '',
       },
       notes: [],
+      noteForUpdate: {},
     };
   },
   components: {
@@ -30,12 +33,22 @@ export default {
   },
   methods: {
     addNote() {
+      console.log(this.$store);
+      this.$store.dispatch('dodajNote', this.note);
+      /* if (!this.noteForUpdate.title === undefined) {
+        this.notes.splice(this.noteForUpdate.index, {
+          title: this.title,
+          note: this.note,
+        });
+        this.noteForUpdate = {};
+        return;
+      }
       this.notes.push(this.note);
       localStorage.setItem('notes', JSON.stringify(this.notes));
       this.note = {
         title: '',
         note: '',
-      };
+      }; */
     },
     removeNote(index) {
       this.notes.splice(index, 1);
@@ -43,10 +56,13 @@ export default {
     changeNoteValue(newNote) {
       this.note = newNote;
     },
+    updateNote(noteData) {
+      this.noteForUpdate = noteData;
+    },
   },
   mounted() {
     this.notes = JSON.parse(window.localStorage.getItem('notes')) || [];
-   // localStorage.removeItem('notes');
+    localStorage.removeItem('notes');
   },
 };
 </script>
