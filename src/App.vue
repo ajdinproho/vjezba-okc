@@ -46,6 +46,7 @@ export default {
   },
   mounted() {
     this.notes = JSON.parse(window.localStorage.getItem('notes')) || [];
+   // localStorage.removeItem('notes');
   },
 };
 </script>

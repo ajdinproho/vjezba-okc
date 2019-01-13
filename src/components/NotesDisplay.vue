@@ -1,17 +1,16 @@
 <template>
   <div>
-    <div
+    <NoteCard
       v-for="(singelNote, index) in notesToBeDisplayed"
-      :key="index">
-      <div class="input-wrap">
-        <span>Title: {{singelNote.title}}</span>
-      </div>
-      {{ singelNote.note }}
-      <div @click="parentRemoveMethod(index)"> X </div>
-    </div>
+      :key="index"
+      :single-note="singleNote"
+      :parent-remove-method="parentRemoveMethod">
+    </NoteCard>
   </div>
 </template>
 <script>
+import NoteCard from './NoteCard.vue';
+
 export default {
   name: 'NotesDisplay',
   props: {
@@ -24,6 +23,9 @@ export default {
       type: Function,
       required: true,
     },
+  },
+  components: {
+    NoteCard,
   },
 };
 </script>
