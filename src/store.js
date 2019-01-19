@@ -3,18 +3,17 @@ const store = {
     notes: [],
   },
   actions: {
-    dodajNote({ commit }, biljeska) {
-      commit('DODAVANJE_BILJESKE', biljeska);
+    addNote({ commit }, note) {
+      commit('ADDING_NOTE', note);
     },
   },
   mutations: {
-    DODAVANJE_BILJESKE(state, biljeska) {
-      state.notes.push(biljeska);
+    ADDING_NOTE(state, note) {
+      state.notes.push(note);
     },
   },
   getters: {
-    listaBiljeski: state => state.notes,
+    notes: state => state.notes,
   },
 };
-
 export default store;

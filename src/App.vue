@@ -3,11 +3,12 @@
     <InputFields
       :add-note="addNote"
       :parent-change-method="changeNoteValue"
-      :note-for-update="noteForUpdate" />
+    />
     <NotesDisplay
       :notes-to-be-displayed="notes"
       :parent-remove-method="removeNote"
-      :update-note="updateNote" />
+      :date-time="getDateTime"
+    />
   </div>
 </template>
 
@@ -22,9 +23,9 @@ export default {
       note: {
         title: '',
         note: '',
+        dateTime: '',
       },
       notes: [],
-      noteForUpdate: {},
     };
   },
   components: {
@@ -32,48 +33,49 @@ export default {
     NotesDisplay,
   },
   methods: {
-    addNote() {
-      console.log(this.$store);
-      this.$store.dispatch('dodajNote', this.note);
-      /* if (!this.noteForUpdate.title === undefined) {
-        this.notes.splice(this.noteForUpdate.index, {
-          title: this.title,
-          note: this.note,
-        });
-        this.noteForUpdate = {};
-        return;
+    getDateTime() {
+      const date = new Date();
+      const hours = date.getHours();
+      const mins = date.getMinutes();
+      const secs = date.getSeconds();
+      let dd = date.getDate();
+      let mm = date.getMonth() + 1;
+      const yyyy = date.getFullYear();
+      if (dd < 10) {
+        dd = '0' + dd;
       }
-      this.notes.push(this.note);
-      localStorage.setItem('notes', JSON.stringify(this.notes));
-      this.note = {
-        title: '',
-        note: '',
-      }; */
+      if (mm < 10) {
+        mm = '0' + mm;
+      }
+      return dd + '.' + mm + '.' + yyyy + '.' + ' - ' + hours + ':' + mins + ':' + secs;
+    },
+    addNote() {
+      this.$store.dispatch('addNote', this.note);
     },
     removeNote(index) {
       this.notes.splice(index, 1);
+      window.localStorage.setItem('notes', JSON.stringify(this.notes));
     },
     changeNoteValue(newNote) {
       this.note = newNote;
     },
-    updateNote(noteData) {
-      this.noteForUpdate = noteData;
-    },
   },
   mounted() {
     this.notes = JSON.parse(window.localStorage.getItem('notes')) || [];
-    localStorage.removeItem('notes');
   },
 };
 </script>
 
 <style lang="scss">
+body{
+  background-color: #7c45a04d;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: black;
   margin-top: 60px;
 }
 </style>

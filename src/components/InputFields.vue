@@ -1,16 +1,18 @@
 <template>
   <div>
     <div class="input-wrap">
-      <input type="text" v-model="noteTitle" @keyup="changeNote" />
+      <input type="text" id="title" placeholder="Note title"
+             v-model="noteTitle" @keyup="changeNote" />
     </div>
     <div class="input-wrap">
-      <input type="textarea" v-model="noteVal" @keyup="changeNote" />
+     <textarea id="noteValue" v-model="noteVal" @keyup="changeNote" placeholder="Type your note"></textarea>
     </div>
     <div class="input-wrap">
       <button @click="add">Add note</button>
     </div>
   </div>
 </template>
+
 <script>
 export default {
   name: 'InputFields',
@@ -27,12 +29,7 @@ export default {
     },
     parentChangeMethod: {
       type: Function,
-      required: true,
-    },
-    noteForUpdate: {
-      type: Object,
-      required: false,
-      default: () => {},
+      reguired: true,
     },
   },
   methods: {
@@ -45,26 +42,48 @@ export default {
       this.parentChangeMethod({
         title: this.noteTitle,
         note: this.noteVal,
-        date: this.getDate(),
       });
-    },
-    getDate() {
-      const date = new Date();
-      return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}.${date.getHours()}.${date.getMinutes()}`;
-    },
-  },
-  watch: {
-    noteForUpdate(oldValues, newValues) {
-      if (newValues !== {}) {
-        this.noteVal = newValues.note;
-        this.noteTitle = newValues.title;
-      }
     },
   },
 };
 </script>
 <style lang="scss" scoped>
+  #title{
+    background-color: firebrick;
+    color: white;
+    width: 500px;
+    height: 40px;
+    font-size: 20px;
+    border: 3px solid black;
+    outline: none;
+    padding: 6px;
+  }
+  #noteValue{
+    background-color: firebrick;
+    color: white;
+    padding: 15px 10px;
+    font-size: 20px;
+    width: 400px;
+    border: 3px solid black;
+    height: 200px;
+    resize: none;
+    outline: none;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  }
   .input-wrap {
     padding: 5px;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  }
+  ::placeholder{
+    color: black;
+  }
+  button{
+    font-size: 20px;
+    color: black;
+    border: 2px solid black;
+    background-color: firebrick;
+    width: 200px;
+    height: 35px;
+    outline: none;
   }
 </style>
