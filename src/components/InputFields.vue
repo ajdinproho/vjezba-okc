@@ -43,10 +43,10 @@ export default {
       }
       return `${dd}.${mm}.${yyyy}. - ${hours}:${mins}:${secs}`;
     },
-    clearValues() {
+    /* clearValues() {
       this.noteVal = '';
       this.noteTitle = '';
-    },
+    }, */
     addNote() {
       this.note.title = this.noteTitle;
       this.note.text = this.noteVal;
@@ -56,7 +56,7 @@ export default {
         text: this.note.text,
         date: this.note.dateTime,
       });
-      this.clearValues();
+      // this.clearValues();
     },
   },
 };

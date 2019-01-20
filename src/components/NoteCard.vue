@@ -36,7 +36,7 @@ export default {
   },
   data() {
     return {
-      value: this.singleNote.note,
+      value: this.singleNote.text,
       tempValue: null,
       editing: false,
     };
@@ -58,7 +58,7 @@ export default {
     },
     RemoveMethod(Index) {
       window.localStorage.setItem('notes', JSON.stringify(this.notes));
-      this.$store.dispatch('removeMethod', Index);
+      return this.$store.dispatch('removeMethod', Index);
     },
   },
 };

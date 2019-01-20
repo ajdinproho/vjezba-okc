@@ -17,15 +17,16 @@ export default {
     InputFields,
     NotesDisplay,
   },
-  mounted() {
-    this.notes = JSON.parse(window.localStorage.getItem('notes')) || [];
-  },
+  // mounted() {
+  // this.notes = JSON.parse(window.localStorage.getItem('notes')) || [];
+  // },
 };
 </script>
 
 <style lang="scss">
 body{
-  background: url(./assets/tigar.jpg) center no-repeat;
+  background: url(./assets/tigar.jpg);
+  background-repeat: no-repeat;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
