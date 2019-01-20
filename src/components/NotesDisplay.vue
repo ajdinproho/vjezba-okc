@@ -3,7 +3,6 @@
     <NoteCard id="cardComp"
       v-for="(singleNote, index) in vuexNotes"
       :single-note="singleNote"
-      :remove-method="parentRemoveMethod"
       :key="index"
       :Index="index"
       :set-date-time="dateTime"
@@ -17,15 +16,6 @@ import NoteCard from './NoteCard.vue';
 export default {
   name: 'NotesDisplay',
   props: {
-    notesToBeDisplayed: {
-      type: Array,
-      required: false,
-      default: () => [],
-    },
-    parentRemoveMethod: {
-      type: Function,
-      required: true,
-    },
     dateTime: {
       type: Function,
       required: true,
@@ -44,11 +34,13 @@ export default {
 
 <style lang="scss" scoped>
   #cardComp{
-    display: inline-block;
+    display: block;
     height: auto;
     margin-left: 15px;
     margin-top: 15px;
     width: 30%;
     word-wrap: break-word;
+    position: relative;
+    padding-left: 650px;
   }
 </style>

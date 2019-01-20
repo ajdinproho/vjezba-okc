@@ -1,4 +1,3 @@
-
 <template>
   <div>
     <div id="card">
@@ -6,7 +5,7 @@
         <span>{{ singleNote.title }}</span>
       </div>
       <div id="text" v-if="!editing">
-        <p> {{ singleNote.note }}</p>
+        <p> {{ singleNote.note }} </p>
         <p> {{ singleNote.dateTime }} </p>
       </div>
       <div v-if="editing">
@@ -29,10 +28,6 @@ export default {
       type: Object,
       required: true,
     },
-    RemoveMethod: {
-      type: Function,
-      required: true,
-    },
     Index: {
       type: Number,
       required: false,
@@ -41,7 +36,7 @@ export default {
     setDateTime: {
       type: Function,
       required: true,
-    }
+    },
   },
   data() {
     return {
@@ -66,10 +61,9 @@ export default {
       this.disableEditing();
     },
     RemoveMethod(Index) {
-      this.tempValue = null;
-      thos.editing = false;
-    }
-  }
+      this.$store.dispatch('removeMethod', Index);
+    },
+  },
 };
 </script>
 
@@ -85,6 +79,7 @@ export default {
   color: black;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  // background-image: url(/assets/tigar.jpg);
 }
 #title{
   padding-top: 10px;

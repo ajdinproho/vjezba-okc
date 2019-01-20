@@ -6,7 +6,6 @@
     />
     <NotesDisplay
       :notes-to-be-displayed="notes"
-      :parent-remove-method="removeNote"
       :date-time="getDateTime"
     />
   </div>
@@ -42,19 +41,15 @@ export default {
       let mm = date.getMonth() + 1;
       const yyyy = date.getFullYear();
       if (dd < 10) {
-        dd = '0' + dd;
+        dd = `0${dd}`;
       }
       if (mm < 10) {
-        mm = '0' + mm;
+        mm = `0${mm}`;
       }
-      return dd + '.' + mm + '.' + yyyy + '.' + ' - ' + hours + ':' + mins + ':' + secs;
+      return `${dd}.${mm}.${yyyy}. - ${hours}:${mins}:${secs}`;
     },
     addNote() {
       this.$store.dispatch('addNote', this.note);
-    },
-    removeNote(index) {
-      this.notes.splice(index, 1);
-      window.localStorage.setItem('notes', JSON.stringify(this.notes));
     },
     changeNoteValue(newNote) {
       this.note = newNote;
@@ -68,7 +63,7 @@ export default {
 
 <style lang="scss">
 body{
-  background-color: #7c45a04d;
+  background: url(/src/assets/tigar.jpg);
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
