@@ -30,12 +30,8 @@ export default {
     },
     Index: {
       type: Number,
-      required: false,
-      default: -1,
-    },
-    setDateTime: {
-      type: Function,
       required: true,
+      default: -1,
     },
   },
   data() {
@@ -57,10 +53,11 @@ export default {
     saveEdit() {
       this.value = this.tempValue;
       this.singleNote.note = this.value;
-      this.singleNote.dateTime = this.setDateTime();
+      // this.singleNote.dateTime = this.setDateTime();
       this.disableEditing();
     },
     RemoveMethod(Index) {
+      window.localStorage.setItem('notes', JSON.stringify(this.notes));
       this.$store.dispatch('removeMethod', Index);
     },
   },

@@ -5,7 +5,6 @@
       :single-note="singleNote"
       :key="index"
       :Index="index"
-      :set-date-time="dateTime"
     />
   </div>
 </template>
@@ -15,12 +14,6 @@ import NoteCard from './NoteCard.vue';
 
 export default {
   name: 'NotesDisplay',
-  props: {
-    dateTime: {
-      type: Function,
-      required: true,
-    },
-  },
   components: {
     NoteCard,
   },

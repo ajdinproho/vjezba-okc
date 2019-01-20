@@ -1,15 +1,13 @@
 <template>
   <div>
     <div class="input-wrap">
-      <input type="text" id="title" placeholder="Note title"
-             v-model="noteTitle" @keyup="changeNote" />
+      <input type="text" id="title" placeholder="Note title" v-model="noteTitle"/>
     </div>
     <div class="input-wrap">
-     <textarea id="noteValue" v-model="noteVal"
-       @keyup="changeNote" placeholder="Type your note..."></textarea>
+     <textarea id="noteValue" v-model="noteVal" placeholder="Type your note..."></textarea>
     </div>
     <div class="input-wrap">
-      <button @click="add">Add note</button>
+      <button @click="addNote">Add note</button>
     </div>
   </div>
 </template>
@@ -19,31 +17,46 @@ export default {
   name: 'InputFields',
   data() {
     return {
+      note: {
+        title: '',
+        text: '',
+        dateTime: '',
+      },
       noteVal: '',
       noteTitle: '',
     };
   },
-  props: {
-    addNote: {
-      type: Function,
-      required: true,
-    },
-    parentChangeMethod: {
-      type: Function,
-      reguired: true,
-    },
-  },
   methods: {
-    add() {
-      this.addNote();
+    getDateTime() {
+      const date = new Date();
+      const hours = date.getHours();
+      const mins = date.getMinutes();
+      const secs = date.getSeconds();
+      let dd = date.getDate();
+      let mm = date.getMonth() + 1;
+      const yyyy = date.getFullYear();
+      if (dd < 10) {
+        dd = `0${dd}`;
+      }
+      if (mm < 10) {
+        mm = `0${mm}`;
+      }
+      return `${dd}.${mm}.${yyyy}. - ${hours}:${mins}:${secs}`;
+    },
+    clearValues() {
       this.noteVal = '';
       this.noteTitle = '';
     },
-    changeNote() {
-      this.parentChangeMethod({
-        title: this.noteTitle,
-        note: this.noteVal,
+    addNote() {
+      this.note.title = this.noteTitle;
+      this.note.text = this.noteVal;
+      this.note.dateTime = this.getDateTime();
+      this.$store.dispatch('dodajNote', {
+        title: this.note.title,
+        text: this.note.text,
+        date: this.note.dateTime,
       });
+      this.clearValues();
     },
   },
 };
