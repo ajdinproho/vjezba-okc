@@ -4,11 +4,11 @@ const store = {
   },
   actions: {
     addNote({ commit }, note) {
-      commit('ADDING_NOTE', note);
+      commit('dodavanje_biljeske', note);
     },
   },
   mutations: {
-    ADDING_NOTE(state, note) {
+    dodavanje_biljeske(state, note) {
       state.notes.push(note);
     },
   },

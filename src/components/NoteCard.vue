@@ -64,6 +64,10 @@ export default {
       this.singleNote.note = this.value;
       this.singleNote.dateTime = this.setDateTime();
       this.disableEditing();
+    },
+    RemoveMethod(Index) {
+      this.tempValue = null;
+      thos.editing = false;
     }
   }
 };
@@ -107,7 +111,7 @@ button{
 #editText{
   background-color: firebrick;
   color: black;
-  width: 445px;
+  width: 345px;
   outline: none;
   resize: none;
   word-wrap: break-word;
