@@ -6,7 +6,7 @@
     </div>
     <div class="input-wrap">
      <textarea id="noteValue" v-model="noteVal"
-       @keyup="changeNote" placeholder="Type your note"></textarea>
+       @keyup="changeNote" placeholder="Type your note..."></textarea>
     </div>
     <div class="input-wrap">
       <button @click="add">Add note</button>
