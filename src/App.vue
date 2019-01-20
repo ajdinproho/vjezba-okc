@@ -63,7 +63,7 @@ export default {
 
 <style lang="scss">
 body{
-  background: url(/src/assets/tigar.jpg);
+  background-image: url(./assets/tigar.jpg);
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

@@ -5,7 +5,8 @@
              v-model="noteTitle" @keyup="changeNote" />
     </div>
     <div class="input-wrap">
-     <textarea id="noteValue" v-model="noteVal" @keyup="changeNote" placeholder="Type your note"></textarea>
+     <textarea id="noteValue" v-model="noteVal"
+       @keyup="changeNote" placeholder="Type your note"></textarea>
     </div>
     <div class="input-wrap">
       <button @click="add">Add note</button>
@@ -57,6 +58,7 @@ export default {
     border: 3px solid black;
     outline: none;
     padding: 6px;
+    opacity: 0.92;
   }
   #noteValue{
     background-color: firebrick;
@@ -69,10 +71,12 @@ export default {
     resize: none;
     outline: none;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    opacity: 0.92;
   }
   .input-wrap {
     padding: 5px;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    opacity: 0.92;
   }
   ::placeholder{
     color: black;
@@ -85,5 +89,6 @@ export default {
     width: 200px;
     height: 35px;
     outline: none;
+    font-weight: bold;
   }
 </style>

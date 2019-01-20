@@ -79,7 +79,7 @@ export default {
   color: black;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  // background-image: url(/assets/tigar.jpg);
+  opacity: 0.92;
 }
 #title{
   padding-top: 10px;
@@ -87,6 +87,7 @@ export default {
   height: 30px;
   width: 350px;
   color: black;
+  font-weight: bold;
 }
 button{
   width: 40px;
