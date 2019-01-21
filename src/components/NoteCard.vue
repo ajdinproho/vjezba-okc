@@ -5,7 +5,7 @@
         <span>{{ singleNote.title }}</span>
       </div>
       <div id="text" v-if="!editing">
-        <p> {{ singleNote.note }} </p>
+        <p> {{ singleNote.text }} </p>
         <p> {{ singleNote.dateTime }} </p>
       </div>
       <div v-if="editing">
